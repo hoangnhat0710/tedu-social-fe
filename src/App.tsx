@@ -1,25 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import './styles/sb-admin-2.min.css'
+import Login from './pages/Account/Login';
+import Admin from './pages/Admin/Admin';
+import {BrowserRouter, Routes, Route } from 'react-router-dom';
+import ProtectedRoute from './components/ProtectedRoute';
+import AccountRoute from './components/AccountRoute';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div className='App' id='wrapper'>
+      <BrowserRouter>
+        <Routes>
+            <Route path="/login"
+                   element={
+                    <AccountRoute>
+                      <Login />
+                    </AccountRoute>
+                  }
+             />
+            <Route path="/admin"
+                   element={
+                    <ProtectedRoute>
+                      <Admin />
+                    </ProtectedRoute>
+                  }
+             />
+        </Routes>
+      </BrowserRouter>
+  </div>
   );
 }
 
