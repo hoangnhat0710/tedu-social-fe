@@ -40,7 +40,6 @@ export interface Logout {
 
 export interface AccountState{
     user: AuthenticatedUser | null;
-    loading: boolean;
     error: string | null;
     token: string | null;
 }
