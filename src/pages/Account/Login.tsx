@@ -1,6 +1,21 @@
-import React from 'react'
+import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 
 export default function Login() {
+  
+  const [inputs, setInputs] = useState({
+     email: '',
+     password: ''
+  });
+
+  const {email, password} = inputs;
+
+
+  const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+      const {name, value} = e.target;
+      setInputs({...inputs, [name]: value});
+      console.log(email, password);
+  }
+
   return (
     <div className='container'>
       {/* Outer Row */}
@@ -23,6 +38,8 @@ export default function Login() {
                           className='form-control form-control-user'
                           id='exampleInputEmail'
                           aria-describedby='emailHelp'
+                          name='email'
+                          onChange={handleChangeInput}
                           placeholder='Enter Email Address...'
                         />
                       </div>
@@ -32,6 +49,8 @@ export default function Login() {
                           className='form-control form-control-user'
                           id='exampleInputPassword'
                           placeholder='Password'
+                          onChange={handleChangeInput}
+                          name='password'
                         />
                       </div>
                       <div className='form-group'>

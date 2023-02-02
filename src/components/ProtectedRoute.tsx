@@ -1,14 +1,13 @@
 import React from 'react'
 import { Navigate, RouteProps } from "react-router-dom";
 import { useSelector } from 'react-redux';
-import { AccountState } from '../store/account/types';
-import { AppState } from '../store';
+import { RootState } from ".././store/index";
 
 
 
 export default function ProtectedRoute({ children }: { children: JSX.Element }) {
    
-   const account: AccountState = useSelector((state: AppState) => state.account);
+   const account = useSelector( (state: RootState) => state.account);
    
    if(!account.token) {
     return <Navigate to="/login" />;
